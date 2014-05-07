@@ -4,7 +4,7 @@
 # Example
 
 ```
-<x-tfl-bus stop="76213"></x-tfl-bus>
+<x-tfl-bus stopId="76213"></x-tfl-bus>
 ```
 
 ```

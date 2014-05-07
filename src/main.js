@@ -30,7 +30,7 @@
   // Fetch the data for the given component. Will get the information
   // to query from it.
   function _loadData(component) {
-    var url = URL.replace('%STOP%', component.stop);
+    var url = URL.replace('%STOP%', component.stopId);
     var xhr = _createCORSRequest(url);
     if (!xhr) {
       // Fallback to jsonp ?
@@ -60,21 +60,21 @@
     }
 
     var result = JSON.parse(data);
-    currentData[component.stop] = result.query && result.query.results &&
+    currentData[component.stopId] = result.query && result.query.results &&
        result.query.results.json || {};
     _displayData(component);
   }
 
-  // Builds a HTML list with the next buses for the given stop.
+  // Builds a HTML list with the next buses for the given stop identifier.
   // Also checks the extra info from the component to display correctly the
   // number of next services and additional information.
   function _displayData(component) {
-    if (!currentData[component.stop] ||
-     !Array.isArray(currentData[component.stop].arrivals)) {
+    if (!currentData[component.stopId] ||
+     !Array.isArray(currentData[component.stopId].arrivals)) {
       return;
     }
 
-    var data = currentData[component.stop];
+    var data = currentData[component.stopId];
 
     component.innerHTML = '';
 
@@ -97,7 +97,7 @@
     lifecycle: {
       created: function () {
         // Get basic information or default values and fetch the data.
-        this.xtag.stop = this.getAttribute('stop') || '57096';
+        this.xtag.stopId = this.getAttribute('stopId') || '57096';
         this.xtag.maxArrivals = parseInt(this.getAttribute('maxArrivals')) || 3;
 
         this.refresh();
@@ -106,12 +106,12 @@
     events: {},
     accessors: {
       // Bus stop number
-      stop: {
+      stopId: {
         get: function () {
-          return this.xtag.stop;
+          return this.xtag.stopId;
         },
         set: function (value) {
-          this.xtag.stop = value;
+          this.xtag.stopId = value;
           this.refresh();
         }
       },
