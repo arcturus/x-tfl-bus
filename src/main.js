@@ -74,7 +74,7 @@
     component.appendChild(ul);
   }
 
-  xtag.register('x-tag-tfl-bus', {
+  xtag.register('x-tfl-bus', {
     lifecycle: {
       created: function () {
         this.xtag.stop = this.getAttribute('stop') || '57096';

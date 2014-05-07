@@ -1,12 +1,15 @@
-# About tfl-bus
+# About x-tfl-bus
 
 
 # Example
 
 ```
-// describe usage
+<x-tfl-bus stop="76213"></x-tfl-bus>
+```
 
-
+```
+var xBus = document.getElementsByTagName('x-tfl-bus')[0];
+xBus.refres();
 ```
 
 # Download it
@@ -36,5 +39,3 @@ $ grunt bump-push  // bump the version number, tag it and push to origin master
 [Guide for creating X-Tag Components](https://github.com/x-tag/core/wiki/Creating-X-Tag-Components)
 
 [Using X-Tag components in your applications](https://github.com/x-tag/core/wiki/Using-our-Web-Components-in-Your-Application)
-
-

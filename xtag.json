@@ -1,6 +1,6 @@
 {
   "name": "tfl-bus",
-  "tagName": "x-tag-tfl-bus",
+  "tagName": "x-tfl-bus",
   "version": "0.0.1",
   "author": "Francisco Jordano <francisco@jordano.es>",
   "description": "Nothing!",

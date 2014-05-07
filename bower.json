@@ -1,6 +1,6 @@
 {
-  "name": "tfl-bus",
-  "description": "Nothing!",
+  "name": "x-tfl-bus",
+  "description": "x-tag component for display TFL bus stops information",
   "version": "0.0.1",
   "author": "Francisco Jordano <francisco@jordano.es>",
   "keywords": [
