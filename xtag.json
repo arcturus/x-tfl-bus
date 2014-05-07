@@ -15,10 +15,24 @@
   },
   "documentation": {
     "description": "Nothing!",
-    "attributes": {},
+    "attributes": {
+      "stop": "Number of the bus stop",
+      "maxArrivals": "Maximun number of next buses to display",
+      "data": "Parsed JSON data coming from TFL"
+    },
     "events": {},
-    "methods": {},
-    "getters": {},
-    "setters": {}
+    "methods": {
+      "refresh": "Fetch new data and display it",
+      "error": "Display error on the component accordling (TODO)"
+    },
+    "getters": {
+      "stop": "Get the current stop number",
+      "maxArrivals": "Get the maximun number of services to display",
+      "data": "Returns the full parsed JSON with the stop information"
+    },
+    "setters": {
+      "stop": "Setup the stop number, fetch info and refresh the component",
+      "maxArrivals": "Refresh the information and display new maximun services"
+    }
   }
 }
