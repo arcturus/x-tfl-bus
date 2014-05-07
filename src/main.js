@@ -1,4 +1,4 @@
-(function(){
+(function () {
 
   'use strict';
 
@@ -31,10 +31,10 @@
       return;
     }
 
-    xhr.onload = function() {
+    xhr.onload = function () {
       _parseData(component, xhr.responseText);
     };
-    xhr.onerror = function() {
+    xhr.onerror = function () {
       component.error('data');
     };
 
@@ -60,8 +60,8 @@
 
     component.innerHTML = '';
     var ul = document.createElement('ul');
-    component.data.arrivals.slice(0, component.maxArrivals).
-      forEach(function(arrival) {
+    component.data.arrivals.slice(0, component.maxArrivals).forEach(
+      function (arrival) {
       ul.innerHTML += '<li>' + arrival.routeName + ' to ' + arrival.destination + ' (' + arrival.estimatedWait + ')' + '</li>';
     });
     ul.innerHTML += '<li>Last update ' + component.data.lastUpdated + '</li>';
@@ -70,50 +70,50 @@
   }
 
   xtag.register('x-tag-tfl-bus', {
-  	lifecycle: {
-  		created: function(){
+    lifecycle: {
+      created: function () {
         this.xtag.stop = this.getAttribute('stop') || '57096';
         this.xtag.maxArrivals = parseInt(this.getAttribute('maxArrivals')) || 3;
 
         this.xtag.data = null;
 
         this.refresh();
-  		}
-  	},
-  	events: {},
-  	accessors: {
+      }
+    },
+    events: {},
+    accessors: {
       stop: {
-        get: function() {
+        get: function () {
           return this.xtag.stop;
         },
-        set: function(value) {
+        set: function (value) {
           this.xtag.stop = value;
           this.refresh();
         }
       },
       maxArrivals: {
-        get: function() {
+        get: function () {
           return this.xtag.maxArrivals;
         },
-        set: function(n) {
+        set: function (n) {
           this.xtag.maxArriavls = parseInt(n);
           this.refresh();
         }
       },
       data: {
-        get: function() {
+        get: function () {
           return this.xtag.data;
         },
-        set: function(data) {
+        set: function (data) {
           this.xtag.data = data;
         }
       }
     },
-  	methods: {
-      refresh: function() {
+    methods: {
+      refresh: function () {
         _loadData(this);
       },
-      error: function(type) {
+      error: function (type) {
         console.log('Error type: ' + type);
       }
     }
