@@ -2,6 +2,8 @@
 
   'use strict';
 
+  var currentData = {};
+
   var URL = 'https://query.yahooapis.com/v1/public/yql?' +
    'q=select%20*%20from%20json%20where%20url%3D%22' +
    'http%3A%2F%2Fcountdown.tfl.gov.uk%2FstopBoard%2F%STOP%' +
@@ -48,23 +50,26 @@
     }
 
     var result = JSON.parse(data);
-    component.data = result.query && result.query.results &&
+    currentData[component.stop] = result.query && result.query.results &&
        result.query.results.json || {};
     _displayData(component);
   }
 
   function _displayData(component) {
-    if (!component.data && !Array.isArray(component.data.arrivals)) {
+    if (!currentData[component.stop] ||
+     !Array.isArray(currentData[component.stop].arrivals)) {
       return;
     }
 
+    var data = currentData[component.stop];
+
     component.innerHTML = '';
     var ul = document.createElement('ul');
-    component.data.arrivals.slice(0, component.maxArrivals).forEach(
+    data.arrivals.slice(0, component.maxArrivals).forEach(
       function (arrival) {
       ul.innerHTML += '<li>' + arrival.routeName + ' to ' + arrival.destination + ' (' + arrival.estimatedWait + ')' + '</li>';
     });
-    ul.innerHTML += '<li>Last update ' + component.data.lastUpdated + '</li>';
+    ul.innerHTML += '<li>Last update ' + data.lastUpdated + '</li>';
 
     component.appendChild(ul);
   }
@@ -102,10 +107,7 @@
       },
       data: {
         get: function () {
-          return this.xtag.data;
-        },
-        set: function (data) {
-          this.xtag.data = data;
+          return currentData[this.xtag.stop] || null;
         }
       }
     },
