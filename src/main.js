@@ -40,13 +40,16 @@
     }
 
     xhr.onload = function () {
+      xtag.fireEvent(component, 'dataReady');
       _parseData(component, xhr.responseText);
     };
     xhr.onerror = function () {
+      xtag.fireEvent(component, 'dataError');
       component.error('data');
     };
 
     xhr.send(null);
+    xtag.fireEvent(component, 'dataLoading');
   }
 
   // Parse TFL info

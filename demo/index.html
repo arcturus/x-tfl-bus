@@ -27,7 +27,16 @@
 <script type="text/javascript">
 
   document.addEventListener('DOMComponentsLoaded', function(){
-
+    var tflBus = document.getElementsByTagName('x-tfl-bus')[0];
+    tflBus.addEventListener('dataLoading', function () {
+      console.log('Data loading ...');
+    });
+    tflBus.addEventListener('dataReady', function () {
+      console.log('Data ready :)');
+    });
+    tflBus.addEventListener('dataError', function () {
+      console.log('Data error :(');
+    });
   });
 
 </script>

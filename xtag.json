@@ -20,7 +20,11 @@
       "maxArrivals": "Maximun number of next buses to display",
       "data": "Parsed JSON data coming from TFL"
     },
-    "events": {},
+    "events": {
+      "dataLoading": "Fired when we launch the XMLHTTPRequest to fetch data",
+      "dataReady": "Fired when we get the response from the server",
+      "dataError": "Fired if we get any error during the request"
+    },
     "methods": {
       "refresh": "Fetch new data and display it",
       "error": "Display error on the component accordling (TODO)"
