@@ -64,6 +64,11 @@
     var data = currentData[component.stop];
 
     component.innerHTML = '';
+
+    if (component.getAttribute('hidden')) {
+      return;
+    }
+
     var ul = document.createElement('ul');
     data.arrivals.slice(0, component.maxArrivals).forEach(
       function (arrival) {
@@ -108,6 +113,15 @@
       data: {
         get: function () {
           return currentData[this.xtag.stop] || null;
+        }
+      },
+      hidden: {
+        get: function () {
+          return this.getAttribute('hidden') || false;
+        },
+        set: function (value) {
+          this.setAttribute('hidden', !!value);
+          refresh();
         }
       }
     },
