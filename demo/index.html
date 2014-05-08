@@ -37,6 +37,9 @@
     tflBus.addEventListener('dataError', function () {
       console.log('Data error :(');
     });
+    tflBus.addEventListener('serviceClicked', function (e) {
+      console.log('Clicked ' + JSON.stringify(e.detail));
+    });
   });
 
 </script>

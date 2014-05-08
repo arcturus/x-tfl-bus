@@ -75,18 +75,19 @@
     }
 
     var data = currentData[component.stopId];
+    var ul = component.getElementsByTagName('ul')[0];
 
-    component.innerHTML = '';
+    ul.innerHTML = '';
 
     if (component.getAttribute('hidden')) {
       return;
     }
 
-    var ul = document.createElement('ul');
     data.arrivals.slice(0, component.maxArrivals).forEach(
-      function (arrival) {
-      ul.innerHTML += '<li>' + arrival.routeName + ' to ' +
-       arrival.destination + ' (' + arrival.estimatedWait + ')' + '</li>';
+      function (arrival, index) {
+      ul.innerHTML += '<li data-stop-position="' + index + '">' +
+       arrival.routeName + ' to ' + arrival.destination +
+       ' (' + arrival.estimatedWait + ')' + '</li>';
     });
     ul.innerHTML += '<li>Last update ' + data.lastUpdated + '</li>';
 
@@ -100,10 +101,24 @@
         this.xtag.stopId = this.getAttribute('stopId') || '57096';
         this.xtag.maxArrivals = parseInt(this.getAttribute('maxArrivals')) || 3;
 
+        this.innerHTML = '<ul></ul>';
+
         this.refresh();
       }
     },
-    events: {},
+    events: {
+      'click': function (e) {
+        var pos = e.target.dataset.stopPosition;
+        var info = currentData[this.xtag.stopId].arrivals[pos];
+        if (info) {
+          xtag.fireEvent(this, 'serviceClicked', {
+            bubbles: false,
+            cancelable: true,
+            detail: info
+          });
+        }
+      }
+    },
     accessors: {
       // Bus stop number
       stopId: {
@@ -128,7 +143,7 @@
       // Parsed data getter
       data: {
         get: function () {
-          return currentData[this.xtag.stop] || null;
+          return currentData[this.xtag.stopId] || null;
         }
       },
       // Special treatment if the component is hidden, don't even build the

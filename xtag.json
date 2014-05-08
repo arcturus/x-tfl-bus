@@ -23,7 +23,8 @@
     "events": {
       "dataLoading": "Fired when we launch the XMLHTTPRequest to fetch data",
       "dataReady": "Fired when we get the response from the server",
-      "dataError": "Fired if we get any error during the request"
+      "dataError": "Fired if we get any error during the request",
+      "serviceClicked": "Fired when a route displayed is clicked"
     },
     "methods": {
       "refresh": "Fetch new data and display it",
