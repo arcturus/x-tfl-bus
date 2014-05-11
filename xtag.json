@@ -18,7 +18,8 @@
     "attributes": {
       "stopId": "Identifier of the bus stop",
       "maxArrivals": "Maximun number of next buses to display",
-      "data": "Parsed JSON data coming from TFL"
+      "data": "Parsed JSON data coming from TFL",
+      "showExtra": "Display additional information like last time updated"
     },
     "events": {
       "dataLoading": "Fired when we launch the XMLHTTPRequest to fetch data",

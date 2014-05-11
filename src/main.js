@@ -89,7 +89,9 @@
        arrival.routeName + ' to ' + arrival.destination +
        ' (' + arrival.estimatedWait + ')' + '</li>';
     });
-    ul.innerHTML += '<li>Last update ' + data.lastUpdated + '</li>';
+    if (component.showExtra) {
+      ul.innerHTML += '<li>Last update ' + data.lastUpdated + '</li>';
+    }
 
     component.appendChild(ul);
   }
@@ -100,6 +102,7 @@
         // Get basic information or default values and fetch the data.
         this.xtag.stopId = this.getAttribute('stopId') || '57096';
         this.xtag.maxArrivals = parseInt(this.getAttribute('maxArrivals')) || 3;
+        this.xtag.showExtra = this.getAttribute('showExtra') === 'true';
 
         this.innerHTML = '<ul></ul>';
 
@@ -154,7 +157,17 @@
         },
         set: function (value) {
           this.setAttribute('hidden', !!value);
-          refresh();
+          this.refresh();
+        }
+      },
+      // Display a line containing extra information like last time data loaded
+      showExtra: {
+        get: function () {
+          return this.xtag.showExtra;
+        },
+        set: function (value) {
+          this.xtag.showExtra = !!value;
+          this.refresh();
         }
       }
     },
