@@ -1,12 +1,14 @@
 {
   "name": "x-tfl-bus",
   "description": "x-tag component for display TFL bus stops information",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": "Francisco Jordano <francisco@jordano.es>",
   "keywords": [
     "Element",
     "web-components",
-    "x-tag"
+    "x-tag",
+    "bus",
+    "london"
   ],
   "main": [
     "src/main.js",
@@ -14,5 +16,6 @@
   ],
   "dependencies": {
     "x-tag-core": "*"
-  }
+  },
+  "license": "MIT"
 }
