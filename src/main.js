@@ -139,7 +139,7 @@
           return this.xtag.maxArrivals;
         },
         set: function (n) {
-          this.xtag.maxArriavls = parseInt(n);
+          this.xtag.maxArrivals = parseInt(n);
           this.refresh();
         }
       },
@@ -178,7 +178,7 @@
       },
       // Error handling
       error: function (type) {
-        // TODO: better error handlin ;)
+        // TODO: better error handling ;)
         console.log('Error type: ' + type);
       }
     }
